@@ -26,7 +26,7 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
         NameValueCollection dataPOST = null;
         int idlManager = 0;
         int idAttributo;
-        int idCategoria;
+        //int idCategoria;
         string ValoreAttributo;
         string operazione;
         bool result;
@@ -44,7 +44,7 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
                 result = Int32.TryParse(dataPOST["idAttributo"], out idAttributo);
                 ValoreAttributo = dataPOST["ValoreAttributo"];
 
-                lManager = (LavorazionePraticaManager)context.Session["lManager"]; //ClassiBase.Services.DatiTemporanei.LeggiDatiTemporanei(idlManager, true);
+                lManager = (LavorazionePraticaManager)context.Session["lManager"];
                 if (lManager == null)
                     lManager = new LavorazionePraticaManager(-1, tipiLavorazione.FatturaInsoluta);
                 

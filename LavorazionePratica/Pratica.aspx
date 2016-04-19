@@ -224,7 +224,7 @@
                     <asp:Button ID="btnCambiaLav" runat="server" Text="Cambia lavorazione" CssClass="bottone" OnClientClick="PulisciForm()" OnClick="btnCambiaLav_Click" />
                 </div>
                 <div style="float: right; margin-right: 15px;">
-                    <img src="../images/Punto-interrogativo.gif" style="height: 32px; width: 32px; cursor: pointer;" onclick="window.open('https://drive.google.com/open?id=1C9EdfNXpYgobzx0bJIIeKcvno4WMQMltCRMmOKWS6Bg&authuser=0','mywindow');" />
+                    <img src="../images/Punto-interrogativo.gif" style="height: 32px; width: 32px; cursor: pointer;" onclick="window.open('https://github.com/cervelliriccardo/LavorazionePratica','mywindow');" />
                 </div>
             </div>
             <div class="separatore"></div>

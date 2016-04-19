@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace ClassiDiBusiness.Pratiche
 {
@@ -144,8 +143,6 @@ namespace ClassiDiBusiness.Pratiche
         private CategorieDaEscludere RichiestaEsclusioneCategorie;
         private AttrubutiDaEscludere RichiestaEsclusioneAttributi;
 
-        //[NonSerialized]
-        //private DataManager DM;
 
         #region costruttori
 
@@ -155,7 +152,6 @@ namespace ClassiDiBusiness.Pratiche
 
         public LavorazionePraticaManager(int idPratica, tipiLavorazione tipoLavorazione/*, DataManager DMOggetto*/)
         {
-            //this.DM = DMOggetto;
             this.idPratica = idPratica;
             DSLavorazioni = new DataSetLavorazioni();
             RichiestaEsclusioneCategorie = new CategorieDaEscludere();
@@ -185,7 +181,6 @@ namespace ClassiDiBusiness.Pratiche
                 {
                     TalavAtt.FillByLavorazionePratica(DSLavorazioni.LavorazioneAttributi, DSLavorazioni.LavorazioniPratiche[0].idLavorazionePratica);
                 }
-                /* forse la metto fuori.....*/
                 if (DSLavorazioni.LavorazioniPratiche.Count == 0)
                 {
                     DataSetLavorazioni.LavorazioniPraticheRow row = GetNuovaRigaLavorazioniPratiche();
@@ -198,7 +193,7 @@ namespace ClassiDiBusiness.Pratiche
                         row.idPratica = idPratica;
                     }
                     row.DataInserimento = DateTime.Now;
-                    row.UtenteInserimento = 1; // ClassiBase.Sicurezza.GetUserIdentity().idUtente;
+                    row.UtenteInserimento = 1; 
                     row.TipoLavorazione = (int)tipoLavorazione;
                     InserisciNuovaRigaLavorazioniPratiche(row);
                 }
@@ -219,9 +214,8 @@ namespace ClassiDiBusiness.Pratiche
             }
         }
 
-        public void Inizializza(/*DataManager DMOggetto*/)
+        public void Inizializza()
         {
-            //this.DM = DMOggetto;
             if (DSLavorazioni == null) DSLavorazioni = new DataSetLavorazioni();
             if (RichiestaEsclusioneAttributi == null) RichiestaEsclusioneAttributi = new AttrubutiDaEscludere();
         }
@@ -432,23 +426,15 @@ namespace ClassiDiBusiness.Pratiche
             return result;
         }
 
-        public void Rollback(/*DataManager DMOggetto*/)
+        public void Rollback()
         {
             this.DSLavorazioni = (DataSetLavorazioni)this.DSLavorazioniRollback;
         }
 
         #endregion
 
-        public void Salva(/*DataManager DMOggetto,*/ tipiLavorazione TipoLav)
+        public void Salva(tipiLavorazione TipoLav)
         {
-            //bool transazioneInterna = false; // Gestisce sia una transazione interna che una passata dall'esterno
-
-            /*if (DMOggetto.GetTransazione == null)
-            {
-                transazioneInterna = true;
-                DMOggetto.BeginTrans();
-            }*/
-
             this.DSLavorazioniRollback = (DataSetLavorazioni)this.DSLavorazioni.Copy();
 
             switch (TipoLav)
@@ -467,26 +453,16 @@ namespace ClassiDiBusiness.Pratiche
                         }
                         TALavAttr.Update(DSLavorazioni.LavorazioneAttributi);
 
-                       /* if (transazioneInterna)
-                        {
-                            DMOggetto.CommitTrans();
-                        }*/
                     }
                     catch (Exception e)
                     {
-                        /*if (transazioneInterna) DMOggetto.RollbackTrans();
-                        this.Rollback(DMOggetto);
-
-                        ClassiBase.Services.Logger.Scrivi("PraticaManager.SalvaTipoLavorazione", ClassiBase.Services.Logger.Gravita.ErroreDiProgramma, e);
-                        */
-                        throw;
+                        throw e;
                     }
                     finally
                     {
                         TaLavPra.Dispose();
                         TALavAttr.Dispose();
                     }
-
                     break;
                 default:
                     break;

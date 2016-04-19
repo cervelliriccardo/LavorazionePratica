@@ -1,8 +1,6 @@
 ﻿using ClassiDiBusiness.DAL;
 using ClassiDiBusiness.Pratiche;
 using System;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 
 namespace LamaVetWeb.Pratiche.LavorazionePratica
 {
