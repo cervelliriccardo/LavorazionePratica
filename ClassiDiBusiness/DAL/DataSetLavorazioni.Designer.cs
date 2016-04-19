@@ -3849,6 +3849,33 @@ namespace ClassiDiBusiness.DAL.DataSetLavorazioniTableAdapters {
             tableMapping.ColumnMappings.Add("DataInserimento", "DataInserimento");
             tableMapping.ColumnMappings.Add("Valore", "Valore");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [LavorazioneAttributi] WHERE (([LavorazionePratica] = @Original_Lavor" +
+                "azionePratica) AND ([AttributoLavorazione] = @Original_AttributoLavorazione))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LavorazionePratica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LavorazionePratica", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AttributoLavorazione", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AttributoLavorazione", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [LavorazioneAttributi] ([LavorazionePratica], [AttributoLavorazione]," +
+                " [DataInserimento], [Valore]) VALUES (@LavorazionePratica, @AttributoLavorazione" +
+                ", @DataInserimento, @Valore)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LavorazionePratica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LavorazionePratica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AttributoLavorazione", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AttributoLavorazione", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataInserimento", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataInserimento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valore", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Valore", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [LavorazioneAttributi] SET [LavorazionePratica] = @LavorazionePratica, [AttributoLavorazione] = @AttributoLavorazione, [DataInserimento] = @DataInserimento, [Valore] = @Valore WHERE (([LavorazionePratica] = @Original_LavorazionePratica) AND ([AttributoLavorazione] = @Original_AttributoLavorazione))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LavorazionePratica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LavorazionePratica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AttributoLavorazione", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AttributoLavorazione", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataInserimento", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataInserimento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Valore", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Valore", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LavorazionePratica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LavorazionePratica", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AttributoLavorazione", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AttributoLavorazione", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3895,6 +3922,128 @@ namespace ClassiDiBusiness.DAL.DataSetLavorazioniTableAdapters {
             DataSetLavorazioni.LavorazioneAttributiDataTable dataTable = new DataSetLavorazioni.LavorazioneAttributiDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(DataSetLavorazioni.LavorazioneAttributiDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(DataSetLavorazioni dataSet) {
+            return this.Adapter.Update(dataSet, "LavorazioneAttributi");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_LavorazionePratica, int Original_AttributoLavorazione) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_LavorazionePratica));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_AttributoLavorazione));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int LavorazionePratica, int AttributoLavorazione, System.DateTime DataInserimento, string Valore) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(LavorazionePratica));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(AttributoLavorazione));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(DataInserimento));
+            if ((Valore == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Valore));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int LavorazionePratica, int AttributoLavorazione, System.DateTime DataInserimento, string Valore, int Original_LavorazionePratica, int Original_AttributoLavorazione) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(LavorazionePratica));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(AttributoLavorazione));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(DataInserimento));
+            if ((Valore == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Valore));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_LavorazionePratica));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_AttributoLavorazione));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(System.DateTime DataInserimento, string Valore, int Original_LavorazionePratica, int Original_AttributoLavorazione) {
+            return this.Update(Original_LavorazionePratica, Original_AttributoLavorazione, DataInserimento, Valore, Original_LavorazionePratica, Original_AttributoLavorazione);
         }
     }
     
@@ -4726,6 +4875,35 @@ WHERE        (cattipo.TipoLavorazione = @TipoLavorazione)";
             tableMapping.ColumnMappings.Add("DataUltimaModifica", "DataUltimaModifica");
             tableMapping.ColumnMappings.Add("UtenteUltimaModifica", "UtenteUltimaModifica");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [LavorazioniPratiche] WHERE (([idLavorazionePratica] = @Original_idLa" +
+                "vorazionePratica))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idLavorazionePratica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idLavorazionePratica", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [LavorazioniPratiche] ([idPratica], [idPraticaInbound], [TipoLavorazione], [DataInserimento], [UtenteInserimento], [DataUltimaModifica], [UtenteUltimaModifica]) VALUES (@idPratica, @idPraticaInbound, @TipoLavorazione, @DataInserimento, @UtenteInserimento, @DataUltimaModifica, @UtenteUltimaModifica)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idPratica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idPratica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idPraticaInbound", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idPraticaInbound", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TipoLavorazione", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TipoLavorazione", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataInserimento", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataInserimento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UtenteInserimento", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UtenteInserimento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataUltimaModifica", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataUltimaModifica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UtenteUltimaModifica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UtenteUltimaModifica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [LavorazioniPratiche] SET [idPratica] = @idPratica, [idPraticaInbound] = @idPraticaInbound, [TipoLavorazione] = @TipoLavorazione, [DataInserimento] = @DataInserimento, [UtenteInserimento] = @UtenteInserimento, [DataUltimaModifica] = @DataUltimaModifica, [UtenteUltimaModifica] = @UtenteUltimaModifica WHERE (([idLavorazionePratica] = @Original_idLavorazionePratica))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idPratica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idPratica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idPraticaInbound", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idPraticaInbound", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TipoLavorazione", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TipoLavorazione", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataInserimento", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataInserimento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UtenteInserimento", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UtenteInserimento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataUltimaModifica", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataUltimaModifica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UtenteUltimaModifica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UtenteUltimaModifica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_idLavorazionePratica", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "idLavorazionePratica", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4748,17 +4926,16 @@ WHERE        (cattipo.TipoLavorazione = @TipoLavorazione)";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idPratica", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idPratica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT        DataInserimento, DataUltimaModifica, TipoLavorazione, UtenteInserimento, UtenteUltimaModifica, idLavorazionePratica, idPratica, idPraticaInbound
-FROM            LavorazioniPratiche
-WHERE        (idLavorazionePratica = @idLavorazionePratica)";
+            this._commandCollection[1].CommandText = "SELECT DataInserimento, DataUltimaModifica, TipoLavorazione, UtenteInserimento, U" +
+                "tenteUltimaModifica, idLavorazionePratica, idPratica, idPraticaInbound FROM Lavo" +
+                "razioniPratiche WHERE (idLavorazionePratica = @idLavorazionePratica)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idLavorazionePratica", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idLavorazionePratica", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT        DataInserimento, DataUltimaModifica, TipoLavorazione, UtenteInserim" +
-                "ento, UtenteUltimaModifica, idLavorazionePratica, idPratica, idPraticaInbound\r\nF" +
-                "ROM            LavorazioniPratiche\r\nWHERE        (idPraticaInbound = @idPraticaI" +
-                "nbound)";
+            this._commandCollection[2].CommandText = "SELECT DataInserimento, DataUltimaModifica, TipoLavorazione, UtenteInserimento, U" +
+                "tenteUltimaModifica, idLavorazionePratica, idPratica, idPraticaInbound FROM Lavo" +
+                "razioniPratiche WHERE (idPraticaInbound = @idPraticaInbound)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idPraticaInbound", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idPraticaInbound", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -4860,6 +5037,164 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(DataSetLavorazioni.LavorazioniPraticheDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(DataSetLavorazioni dataSet) {
+            return this.Adapter.Update(dataSet, "LavorazioniPratiche");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_idLavorazionePratica) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_idLavorazionePratica));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(global::System.Nullable<int> idPratica, global::System.Nullable<int> idPraticaInbound, int TipoLavorazione, System.DateTime DataInserimento, global::System.Nullable<int> UtenteInserimento, global::System.Nullable<global::System.DateTime> DataUltimaModifica, global::System.Nullable<int> UtenteUltimaModifica) {
+            if ((idPratica.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(idPratica.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((idPraticaInbound.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(idPraticaInbound.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(TipoLavorazione));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(DataInserimento));
+            if ((UtenteInserimento.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(UtenteInserimento.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((DataUltimaModifica.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(DataUltimaModifica.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((UtenteUltimaModifica.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(UtenteUltimaModifica.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<int> idPratica, global::System.Nullable<int> idPraticaInbound, int TipoLavorazione, System.DateTime DataInserimento, global::System.Nullable<int> UtenteInserimento, global::System.Nullable<global::System.DateTime> DataUltimaModifica, global::System.Nullable<int> UtenteUltimaModifica, int Original_idLavorazionePratica) {
+            if ((idPratica.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(idPratica.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((idPraticaInbound.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(idPraticaInbound.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(TipoLavorazione));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(DataInserimento));
+            if ((UtenteInserimento.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(UtenteInserimento.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((DataUltimaModifica.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(DataUltimaModifica.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((UtenteUltimaModifica.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(UtenteUltimaModifica.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_idLavorazionePratica));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
     }
     
     /// <summary>
@@ -4874,6 +5209,10 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
         
         private UpdateOrderOption _updateOrder;
         
+        private LavorazioneAttributiTableAdapter _lavorazioneAttributiTableAdapter;
+        
+        private LavorazioniPraticheTableAdapter _lavorazioniPraticheTableAdapter;
+        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -4886,6 +5225,34 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
             }
             set {
                 this._updateOrder = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public LavorazioneAttributiTableAdapter LavorazioneAttributiTableAdapter {
+            get {
+                return this._lavorazioneAttributiTableAdapter;
+            }
+            set {
+                this._lavorazioneAttributiTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public LavorazioniPraticheTableAdapter LavorazioniPraticheTableAdapter {
+            get {
+                return this._lavorazioniPraticheTableAdapter;
+            }
+            set {
+                this._lavorazioniPraticheTableAdapter = value;
             }
         }
         
@@ -4908,6 +5275,14 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
                 if ((this._connection != null)) {
                     return this._connection;
                 }
+                if (((this._lavorazioneAttributiTableAdapter != null) 
+                            && (this._lavorazioneAttributiTableAdapter.Connection != null))) {
+                    return this._lavorazioneAttributiTableAdapter.Connection;
+                }
+                if (((this._lavorazioniPraticheTableAdapter != null) 
+                            && (this._lavorazioniPraticheTableAdapter.Connection != null))) {
+                    return this._lavorazioniPraticheTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -4921,6 +5296,12 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
+                if ((this._lavorazioneAttributiTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._lavorazioniPraticheTableAdapter != null)) {
+                    count = (count + 1);
+                }
                 return count;
             }
         }
@@ -4932,6 +5313,24 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(DataSetLavorazioni dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._lavorazioniPraticheTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.LavorazioniPratiche.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._lavorazioniPraticheTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._lavorazioneAttributiTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.LavorazioneAttributi.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._lavorazioneAttributiTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -4942,6 +5341,22 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(DataSetLavorazioni dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._lavorazioniPraticheTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.LavorazioniPratiche.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._lavorazioniPraticheTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._lavorazioneAttributiTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.LavorazioneAttributi.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._lavorazioneAttributiTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -4952,6 +5367,22 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(DataSetLavorazioni dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._lavorazioneAttributiTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.LavorazioneAttributi.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._lavorazioneAttributiTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._lavorazioniPraticheTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.LavorazioniPratiche.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._lavorazioniPraticheTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             return result;
         }
         
@@ -4991,6 +5422,16 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
+            if (((this._lavorazioneAttributiTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._lavorazioneAttributiTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._lavorazioniPraticheTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._lavorazioniPraticheTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -5023,6 +5464,24 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
             try {
                 // ---- Prepare for update -----------
                 //
+                if ((this._lavorazioneAttributiTableAdapter != null)) {
+                    revertConnections.Add(this._lavorazioneAttributiTableAdapter, this._lavorazioneAttributiTableAdapter.Connection);
+                    this._lavorazioneAttributiTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._lavorazioneAttributiTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._lavorazioneAttributiTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._lavorazioneAttributiTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._lavorazioneAttributiTableAdapter.Adapter);
+                    }
+                }
+                if ((this._lavorazioniPraticheTableAdapter != null)) {
+                    revertConnections.Add(this._lavorazioniPraticheTableAdapter, this._lavorazioniPraticheTableAdapter.Connection);
+                    this._lavorazioniPraticheTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._lavorazioniPraticheTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._lavorazioniPraticheTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._lavorazioniPraticheTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._lavorazioniPraticheTableAdapter.Adapter);
+                    }
+                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -5080,6 +5539,14 @@ WHERE        (idLavorazionePratica = @idLavorazionePratica)";
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
+                }
+                if ((this._lavorazioneAttributiTableAdapter != null)) {
+                    this._lavorazioneAttributiTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._lavorazioneAttributiTableAdapter]));
+                    this._lavorazioneAttributiTableAdapter.Transaction = null;
+                }
+                if ((this._lavorazioniPraticheTableAdapter != null)) {
+                    this._lavorazioniPraticheTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._lavorazioniPraticheTableAdapter]));
+                    this._lavorazioniPraticheTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
