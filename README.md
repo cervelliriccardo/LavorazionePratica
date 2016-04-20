@@ -28,6 +28,8 @@ Con questa soluzione, per soddisfare la richiesta di aggiungere un’informazion
 Una demo è visibile all’indirizzo:
 [Lavorazione di una pratica](http://www.lamacom.it/pratiche/pratica.aspx)
 
+![Display result](https://github.com/cervelliriccardo/LavorazionePratica/blob/master/DisplayResult.JPG)  
+
 #Codice
 Il lavoro principale è fatto dal Web User Control, contenuto nella pagina web che mostra il funzionamento, e dalla trapdoor chiamata dal WUC. Il controllo funziona interamente in jQuery. Richiama funzionalità esposte dalla TrapDoor per aggiungere od eliminare gli attributi selezionati. In base alla selezione effettuata la TrapDoor restituisce la liste degli attributi validi rispetto alle configurazioni di esclusione impostate a sistema.
 
