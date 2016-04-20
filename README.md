@@ -11,8 +11,9 @@ Un altro motivo di inefficienza era dato dal fatto che ad ogni richiesta di aggi
 Per risolvere questi problemi ho pensato di trasformare il salvataggio di queste informazioni da una struttura di tipo orizzontale a verticale. Ho introdotto nella base dati una struttura grazie alla quale ogni informazione richiesta viene considerata come un attributo applicato o non applicato alla lavorazione di una pratica.
 
 #DataBase
-Lo schema della base dati è composto da una tabella in cui vengono definiti gli attributi, una tabella che raggruppa gli attributi per categoria, i tipi di lavorazione e quali categorie di attributi ne fanno parte, la configurazione delle esclusioni fra categorie e delle esclusioni fra attributi, ed in fine, le lavorazioni vere e proprie associate alle pratiche. 
-Inizialmente lo schema del database prevedeva una singola tabella dove venivano registrati tutti gli attributi di lavorazione della pratica: 
+Lo schema della base dati è composto da una tabella in cui vengono definiti gli attributi, una tabella che raggruppa gli attributi per categoria, i tipi di lavorazione e quali categorie di attributi ne fanno parte, la configurazione delle esclusioni fra categorie e delle esclusioni fra attributi, ed in fine, le lavorazioni vere e proprie associate alle pratiche.  
+Inizialmente lo schema del database prevedeva una singola tabella dove venivano registrati tutti gli attributi di lavorazione della pratica:  
+
 ![Database Schema](https://github.com/cervelliriccardo/LavorazionePratica/blob/master/StrutturaBefore.PNG)  
 
 Lo schema dopo la ristrutturazione è mostrato in seguito:  
