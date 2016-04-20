@@ -26,7 +26,6 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
         NameValueCollection dataPOST = null;
         int idlManager = 0;
         int idAttributo;
-        //int idCategoria;
         string ValoreAttributo;
         string operazione;
         bool result;

@@ -150,7 +150,7 @@ namespace ClassiDiBusiness.Pratiche
         {
         }
 
-        public LavorazionePraticaManager(int idPratica, tipiLavorazione tipoLavorazione/*, DataManager DMOggetto*/)
+        public LavorazionePraticaManager(int idPratica, tipiLavorazione tipoLavorazione)
         {
             this.idPratica = idPratica;
             DSLavorazioni = new DataSetLavorazioni();
