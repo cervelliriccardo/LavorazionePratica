@@ -8,7 +8,7 @@ La tabella era molto eterogenea, ci venivano registrate informazioni di attivit�
 
 Un altro motivo di inefficienza era dato dal fatto che ad ogni richiesta di aggiungere un’informazione, anche di tipo “flag”, si doveva aggiungere una colonna nella suddetta tabella, con il risultato di avere una crescita “incontrollata” della struttura e un’impegno cospicuo nella modifica del software per gestire una colonna in più ad ogni aggiunta.
 
-Per risolvere questi problemi ho pensato di trasformare il salvataggio di queste informazioni da una struttura di tipo orizzontale a verticale. Ho introdotto nella base dati una struttura a stella grazie alla quale ogni informazione richiesta viene considerata come un attributo applicato o non applicato alla lavorazione di una pratica.
+Per risolvere questi problemi ho pensato di trasformare il salvataggio di queste informazioni da una struttura di tipo orizzontale a verticale. Ho introdotto nella base dati una struttura grazie alla quale ogni informazione richiesta viene considerata come un attributo applicato o non applicato alla lavorazione di una pratica.
 
 #DataBase
 Lo schema della base dati è composto da una tabella in cui vengono definiti gli attributi, una tabella che raggruppa gli attributi per categoria, i tipi di lavorazione e quali categorie di attributi ne fanno parte, la configurazione delle esclusioni fra categorie e delle esclusioni fra attributi, ed in fine, le lavorazioni vere e proprie associate alle pratiche.  
