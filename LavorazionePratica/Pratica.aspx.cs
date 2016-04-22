@@ -29,7 +29,7 @@ namespace LamaVetWeb.Pratiche
 
         private void inizializzaWuc(LavorazionePraticaManager laManager, bool saveCache = true)
         {
-            AttributiLavorazionePraticaWUC.Inizializza(laManager, saveCache);
+            AttributesLavorazionePraticaWUC.Inizializza(laManager, saveCache);
         }
 
         protected void btnCambiaLav_Click(object sender, EventArgs e)

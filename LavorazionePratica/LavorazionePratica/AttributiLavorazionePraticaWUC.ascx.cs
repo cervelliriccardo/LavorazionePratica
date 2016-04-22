@@ -4,7 +4,7 @@ using System;
 
 namespace LamaVetWeb.Pratiche.LavorazionePratica
 {
-    public partial class AttributiLavorazionePraticaWUC : System.Web.UI.UserControl
+    public partial class AttributesLavorazionePraticaWUC : System.Web.UI.UserControl
     {
         public LavorazionePraticaManager lManager;
 

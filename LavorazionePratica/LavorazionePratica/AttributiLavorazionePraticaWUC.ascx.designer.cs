@@ -10,7 +10,7 @@
 namespace LamaVetWeb.Pratiche.LavorazionePratica {
     
     
-    public partial class AttributiLavorazionePraticaWUC {
+    public partial class AttributesLavorazionePraticaWUC {
         
         /// <summary>
         /// hidAccordionIndex control.

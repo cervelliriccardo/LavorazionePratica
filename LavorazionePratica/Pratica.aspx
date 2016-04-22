@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pratica.aspx.cs" Inherits="LamaVetWeb.Pratiche.Pratica" %>
 
-<%@ Register Src="~/LavorazionePratica/AttributiLavorazionePraticaWUC.ascx" TagPrefix="uc1" TagName="AttributiLavorazionePraticaWUC" %>
+<%@ Register Src="~/LavorazionePratica/AttributesLavorazionePraticaWUC.ascx" TagPrefix="uc1" TagName="AttributesLavorazionePraticaWUC" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -128,7 +128,7 @@
 <body>
     <script type="text/javascript">
 
-        var AttributiRinnovo = {
+        var AttributesRinnovo = {
             CambiatoIndirizzo: 1
         }
 
@@ -137,7 +137,7 @@
             RecuperoCrediti: 9
         }
 
-        var AttributiFattura = {
+        var AttributesFattura = {
             InvioCartaceo: 14,
             FatturaNonRicavuta: 13,
             Pagato: 17,
@@ -163,26 +163,26 @@
         });
 
         function AttributoSelezionatoHandler(idAttributo, valoreAttributo) {
-            if (idAttributo == AttributiRinnovo.CambiatoIndirizzo || idAttributo == AttributiFattura.InvioCartaceo) {
+            if (idAttributo == AttributesRinnovo.CambiatoIndirizzo || idAttributo == AttributesFattura.InvioCartaceo) {
                 $('#NuonaAnagraficaDiv').show();
             }
-            if (idAttributo == AttributiFattura.FatturaNonRicavuta) {
+            if (idAttributo == AttributesFattura.FatturaNonRicavuta) {
                 RimuoviCategoriaEsclusa(CategorieFattura.Contatti);
             }
-            if (idAttributo == AttributiFattura.NonPaghera) {
+            if (idAttributo == AttributesFattura.NonPaghera) {
                 RimuoviCategoriaEsclusa(CategorieFattura.RecuperoCrediti);
             }
         }
 
         function AttributoEliminatoHandler(idAttributo) {
-            if (idAttributo == AttributiRinnovo.CambiatoIndirizzo || idAttributo == AttributiFattura.InvioCartaceo) {
+            if (idAttributo == AttributesRinnovo.CambiatoIndirizzo || idAttributo == AttributesFattura.InvioCartaceo) {
                 PulisciAnagrafica();
                 $('#NuonaAnagraficaDiv').hide();
             }
-            if (idAttributo == AttributiFattura.FatturaNonRicavuta) {
+            if (idAttributo == AttributesFattura.FatturaNonRicavuta) {
                 AggiungiCategoriaEsclusa(CategorieFattura.Contatti);
             }
-            if (idAttributo == AttributiFattura.NonPaghera) {
+            if (idAttributo == AttributesFattura.NonPaghera) {
                 AggiungiCategoriaEsclusa(CategorieFattura.RecuperoCrediti);
             }
         }
@@ -405,8 +405,8 @@
                     </div>
                     <div class="separatore"></div>
                     <div class="ContenitoreLavAttr">
-                        <h3 class="titolo ui-corner-top">ATTRIBUTI LAVORAZIONE PRATICA</h3>
-                        <uc1:AttributiLavorazionePraticaWUC runat="server" ID="AttributiLavorazionePraticaWUC" idTipoLavorazione="1" />
+                        <h3 class="titolo ui-corner-top">Attributes LAVORAZIONE PRATICA</h3>
+                        <uc1:AttributesLavorazionePraticaWUC runat="server" ID="AttributesLavorazionePraticaWUC" idTipoLavorazione="1" />
                     </div>
                 </div>
             </div>

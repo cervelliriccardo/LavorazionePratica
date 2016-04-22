@@ -94,13 +94,13 @@ namespace LamaVetWeb.Pratiche {
         protected global::System.Web.UI.WebControls.TextBox tbCapAnag;
         
         /// <summary>
-        /// AttributiLavorazionePraticaWUC control.
+        /// AttributesLavorazionePraticaWUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::LamaVetWeb.Pratiche.LavorazionePratica.AttributiLavorazionePraticaWUC AttributiLavorazionePraticaWUC;
+        protected global::LamaVetWeb.Pratiche.LavorazionePratica.AttributesLavorazionePraticaWUC AttributesLavorazionePraticaWUC;
         
         /// <summary>
         /// btnPulisciLav control.
