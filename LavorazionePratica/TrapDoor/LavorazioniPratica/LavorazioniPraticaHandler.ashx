@@ -14,8 +14,8 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
     private class jsonResult
     {
         public int idlManager { get; set; }
-        public AttributiCategorie AttributiValidi { get; set; }
-        public AttributiLavorazione AttributiLavorazione { get; set; }
+        public AttributiCategorie attributiValidi { get; set; }
+        public AttributiLavorazione attributiLavorazione { get; set; }
     }
 
     public void ProcessRequest(HttpContext context)
@@ -94,8 +94,8 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
                 
                 jsonResult JsonResult = new jsonResult();
                 JsonResult.idlManager = idlManager;
-                JsonResult.AttributiLavorazione = lManager.GetAttributiSelezionati();
-                JsonResult.AttributiValidi = lManager.GetAttributiValidi();
+                JsonResult.attributiLavorazione = lManager.GetAttributiSelezionati();
+                JsonResult.attributiValidi = lManager.GetAttributiValidi();
                 context.Response.Write(JsonConvert.SerializeObject(JsonResult));
             }
         }
@@ -112,7 +112,7 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
         AttributiLavorazione attrSel = lManager.GetAttributiSelezionati();
         AttributoSelezionato attibutoDel = new AttributoSelezionato();
         attibutoDel.idAttributo = -1;
-        //se sto aggiungendo il primo attributo elimino l'attributo finto cool messaggio di cortesia.
+        //se sto aggiungendo il primo attributo elimino l'attributo finto col messaggio di cortesia.
         if (attrSel.AttributiSelezionati.Contains(attibutoDel))
         {
             lManager.RemoveAttributoLavorazione(attibutoDel);

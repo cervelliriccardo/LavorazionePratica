@@ -178,7 +178,7 @@
 
     function bindAttributi(jSonRes) {
         $("#hfidlManager").val(jSonRes.idlManager);
-        var categorie = jSonRes.AttributiValidi.CategorieAttributi;
+        var categorie = jSonRes.attributiValidi.CategorieAttributi;
         $("#CategorieTendinaConteiner").empty();
         $("#CategorieTendinaConteiner").append("<div id='catalog'>");
         $.each(categorie, function (idx, obj) {
@@ -190,7 +190,7 @@
             })
         });
 
-        var AttributiSelezionati = jSonRes.AttributiLavorazione.AttributiSelezionati;
+        var AttributiSelezionati = jSonRes.attributiLavorazione.AttributiSelezionati;
         $("#attrSelezionatiDiv").empty();
         $("#attrSelezionatiDiv").append("<ul id='ulAttrSel' class='droppable ulCursorClass'>");
         $.each(AttributiSelezionati, function (idxAttrSel, objAttrSel) {
