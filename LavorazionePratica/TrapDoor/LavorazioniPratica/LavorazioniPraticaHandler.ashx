@@ -14,8 +14,8 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
     private class jsonResult
     {
         public int idlManager { get; set; }
-        public AttributesCategorie AttributesValidi { get; set; }
-        public AttributesLavorazione AttributesLavorazione { get; set; }
+        public AttributiCategorie AttributiValidi { get; set; }
+        public AttributiLavorazione AttributiLavorazione { get; set; }
     }
 
     public void ProcessRequest(HttpContext context)
@@ -50,7 +50,7 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
                 switch (operazione)
                 {
                     case "Inizializza":
-                        //serve a caricare gli Attributes eventualmente già selezionati nei round precedenti
+                        //serve a caricare gli Attributi eventualmente già selezionati nei round precedenti
                         break;
                     case "AggiungiAttributo":
                         AggiungiAttributo(idAttributo, ValoreAttributo);
@@ -73,15 +73,15 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
                     case "RimuoviAttributoEscluso":
                         RimuoviAttributoEscluso(idAttributo);
                         break;
-                    case "ClearAttributesEsclusi":
-                        ClearAttributesEsclusi();
+                    case "ClearAttributiEsclusi":
+                        ClearAttributiEsclusi();
                         break;
                     default:
                         break;
                 }
 
-                AttributesLavorazione AttributesLav = lManager.GetAttributesSelezionati();
-                if (AttributesLav.AttributesSelezionati.Count <= 0)
+                AttributiLavorazione AttributiLav = lManager.GetAttributiSelezionati();
+                if (AttributiLav.AttributiSelezionati.Count <= 0)
                 {
                     //aggiungo la riga di cortesia
                     AttributoSelezionato att = new AttributoSelezionato();
@@ -94,8 +94,8 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
                 
                 jsonResult JsonResult = new jsonResult();
                 JsonResult.idlManager = idlManager;
-                JsonResult.AttributesLavorazione = lManager.GetAttributesSelezionati();
-                JsonResult.AttributesValidi = lManager.GetAttributesValidi();
+                JsonResult.AttributiLavorazione = lManager.GetAttributiSelezionati();
+                JsonResult.AttributiValidi = lManager.GetAttributiValidi();
                 context.Response.Write(JsonConvert.SerializeObject(JsonResult));
             }
         }
@@ -109,11 +109,11 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
 
     private void AggiungiAttributo(int idAttributo, string ValoreAttributo)
     {
-        AttributesLavorazione attrSel = lManager.GetAttributesSelezionati();
+        AttributiLavorazione attrSel = lManager.GetAttributiSelezionati();
         AttributoSelezionato attibutoDel = new AttributoSelezionato();
         attibutoDel.idAttributo = -1;
         //se sto aggiungendo il primo attributo elimino l'attributo finto cool messaggio di cortesia.
-        if (attrSel.AttributesSelezionati.Contains(attibutoDel))
+        if (attrSel.AttributiSelezionati.Contains(attibutoDel))
         {
             lManager.RemoveAttributoLavorazione(attibutoDel);
         }
@@ -132,14 +132,14 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
 
     private void AggiungiCategoriaEsclusa(int idCategoria)
     {
-        CategoriaAttributes cat = new CategoriaAttributes();
+        CategoriaAttributi cat = new CategoriaAttributi();
         cat.idCategoria = idCategoria;
         lManager.AddEsclusioneCategorie(cat);
     }
 
     private void RimuoviCategoriaEsclusa(int idCategoria)
     {
-        CategoriaAttributes cat = new CategoriaAttributes();
+        CategoriaAttributi cat = new CategoriaAttributi();
         cat.idCategoria = idCategoria;
         lManager.RemoveEsclusioneCategorie(cat);
     }
@@ -153,19 +153,19 @@ public class LavorazioniPraticaHandler : IHttpHandler, System.Web.SessionState.I
     {
         AttributoSelezionato att = new AttributoSelezionato();
         att.idAttributo = idAttributo;
-        lManager.AddEsclusioneAttributes(att);
+        lManager.AddEsclusioneAttributi(att);
     }
 
     private void RimuoviAttributoEscluso(int idAttributo)
     {
         AttributoSelezionato att = new AttributoSelezionato();
         att.idAttributo = idAttributo;
-        lManager.RemoveEsclusioneAttributes(att);
+        lManager.RemoveEsclusioneAttributi(att);
     }
 
-    private void ClearAttributesEsclusi()
+    private void ClearAttributiEsclusi()
     {
-        lManager.ClearEsclusioneAttributes();
+        lManager.ClearEsclusioneAttributi();
     }
 
     public bool IsReusable

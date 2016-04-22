@@ -399,7 +399,7 @@ namespace ClassiDiBusiness.Pratiche
                     idAttributo = attributi.Field<int>("idAttributo"),
                     DescrizioneAttributo = attributi.Field<string>("Descrizione"),
                     HasValore = attributi.Field<bool>("HasValue"),
-                    DescrizioneValore = attributi.Field<string>("ValueDescription")
+                    DescrizioneValore = attributi.Field<string>("DescrizioneValore")
                 };
 
             AttributiCategorie result = new AttributiCategorie();

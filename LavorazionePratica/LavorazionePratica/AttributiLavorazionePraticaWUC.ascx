@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AttributesLavorazionePraticaWUC.ascx.cs" Inherits="LamaVetWeb.Pratiche.LavorazionePratica.AttributesLavorazionePraticaWUC" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AttributiLavorazionePraticaWUC.ascx.cs" Inherits="LamaVetWeb.Pratiche.LavorazionePratica.AttributiLavorazionePraticaWUC" %>
 <meta charset="utf-8">
 <%@ Import Namespace="ClassiDiBusiness.Pratiche" %>
 <%@ Import Namespace="System.Data" %>
@@ -7,12 +7,12 @@
     Il controllo mette a disposizione dei servizi javascript sotto forma di funzioni richiamabili al di fuori del WUC:
     handleDropEvent: Scatena un evento al momento del drop di selezione di un attributo. Una pagina che incapsula il WUC si può registrare all'evento e gestirlo.
     handleDropOutEvent: Scatena un evento al momento del drop out di un attributo(Attributo gettato nel cestino). Una pagina che incapsula il WUC si può registrare all'evento e gestirlo.
-    AggiungiCategoriaEsclusa: Chiamando questa funzione si può eliminare una categoria dalla liste degli Attributes selezionabili.
-    RimuoviCategoriaEsclusa: Chiamando questa funzione si può reinserire una categoria, precedentemente eliminata, dalla liste degli Attributes selezionabili.
+    AggiungiCategoriaEsclusa: Chiamando questa funzione si può eliminare una categoria dalla liste degli Attributi selezionabili.
+    RimuoviCategoriaEsclusa: Chiamando questa funzione si può reinserire una categoria, precedentemente eliminata, dalla liste degli Attributi selezionabili.
     ClearCategorieEscluse: Chiamando questa funzione si può ripulire la lista delle categorie precedentemente eliminate, rendendole di nuovo tutte disponibili.
-    AggiungiAttributoEscluso: Chiamando questa funzione si può eliminare un attributo dalla liste degli Attributes selezionabili.
-    RimuoviAttributoEscluso: Chiamando questa funzione si può reinserire un attributo, precedentemente eliminato, dalla liste degli Attributes selezionabili.
-    ClearAttributesEsclusi: Chiamando questa funzione si può ripulire la lista degli Attributes precedentemente eliminati, rendendoli di nuovo tutti disponibili.
+    AggiungiAttributoEscluso: Chiamando questa funzione si può eliminare un attributo dalla liste degli Attributi selezionabili.
+    RimuoviAttributoEscluso: Chiamando questa funzione si può reinserire un attributo, precedentemente eliminato, dalla liste degli Attributi selezionabili.
+    ClearAttributiEsclusi: Chiamando questa funzione si può ripulire la lista degli Attributi precedentemente eliminati, rendendoli di nuovo tutti disponibili.
 --%>
 
 <style>
@@ -150,8 +150,8 @@
         SendRequesLavorazioni("RimuoviAttributoEscluso", $("#hfidlManager").val(), idAttributo, null);
     }
 
-    function ClearAttributesEsclusi() {
-        SendRequesLavorazioni("ClearAttributesEsclusi", $("#hfidlManager").val(), null, null);
+    function ClearAttributiEsclusi() {
+        SendRequesLavorazioni("ClearAttributiEsclusi", $("#hfidlManager").val(), null, null);
     }
 
     function SendRequesLavorazioni(operazione, idlManager, idAttributo, ValoreAttributo) {
@@ -166,7 +166,7 @@
             dataType: "json",
             async: false,
             success: function (response) {
-                bindAttributes(response);
+                bindAttributi(response);
             }
         };
         jQuery.ajax(options);
@@ -176,24 +176,24 @@
         return $('#hfIdAttrSel').val() != "";
     }
 
-    function bindAttributes(jSonRes) {
+    function bindAttributi(jSonRes) {
         $("#hfidlManager").val(jSonRes.idlManager);
-        var categorie = jSonRes.AttributesValidi.CategorieAttributes;
+        var categorie = jSonRes.AttributiValidi.CategorieAttributi;
         $("#CategorieTendinaConteiner").empty();
         $("#CategorieTendinaConteiner").append("<div id='catalog'>");
         $.each(categorie, function (idx, obj) {
             $("#catalog").append("<h2><a href='#'>" + obj.Descrizione + "</a></h2>");
             $("#catalog").append("<div id='divCatAcc" + idx + "' style='overflow: hidden; position: initial;'>");
             $("#divCatAcc" + idx).append("<ul id='ulAttr" + idx + "' class='ulCursorClass' >");
-            $.each(obj.Attributes, function (idxAttr, objAttr) {
+            $.each(obj.Attributi, function (idxAttr, objAttr) {
                 $("#ulAttr" + idx).append("<li class='draggable' z-index='10' id='liAttributo" + idx + idxAttr + "' idAttributo='" + objAttr.idAttributo + "' hasvalue='" + objAttr.HasValore + "' descrizioneValore='" + objAttr.DescrizioneValore + "'>" + objAttr.Descrizione + "</li>");
             })
         });
 
-        var AttributesSelezionati = jSonRes.AttributesLavorazione.AttributesSelezionati;
+        var AttributiSelezionati = jSonRes.AttributiLavorazione.AttributiSelezionati;
         $("#attrSelezionatiDiv").empty();
         $("#attrSelezionatiDiv").append("<ul id='ulAttrSel' class='droppable ulCursorClass'>");
-        $.each(AttributesSelezionati, function (idxAttrSel, objAttrSel) {
+        $.each(AttributiSelezionati, function (idxAttrSel, objAttrSel) {
             $("#ulAttrSel").append("<li class='draggable AttrSel' id='liAttributoSel" + idxAttrSel + "' idattributo='" + objAttrSel.idAttributo + "'>" + objAttrSel.Descrizione + "</li>");
         });
         inizializza();
@@ -203,7 +203,7 @@
 <asp:HiddenField ID="hfIdAttrSel" runat="server" ClientIDMode="Static" />
 <input id="hfidlManager" type="hidden" runat="server" clientidmode="Static" />
 <div class="LavElement" id="products">
-    <h3 class="titolo ui-corner-top">Attributes</h3>
+    <h3 class="titolo ui-corner-top">Attributi</h3>
     <div id="CategorieTendinaConteiner">
         <div id="catalog">
         </div>
@@ -212,7 +212,7 @@
 <div>
 </div>
 <div class="LavElement" id="cart" style="margin-left: 80px;">
-    <h3 class="titolo ui-corner-top">Attributes LAVORAZIONE</h3>
+    <h3 class="titolo ui-corner-top">Attributi LAVORAZIONE</h3>
     <div id="attrSelezionatiDiv" class="ui-widget-content" style="float: left; width: 99%;">
     </div>
 </div>

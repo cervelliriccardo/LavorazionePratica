@@ -160,7 +160,7 @@ jQuery.fn = jQuery.prototype = {
 							if ( jQuery.isFunction( this[ match ] ) ) {
 								this[ match ]( context[ match ] );
 
-							// ...and otherwise set as attributes
+							// ...and otherwise set as Attributi
 							} else {
 								this.attr( match, context[ match ] );
 							}
@@ -1086,7 +1086,7 @@ var i,
 	identifier = characterEncoding.replace( "w", "w#" ),
 
 	// Acceptable operators http://www.w3.org/TR/selectors/#attribute-selectors
-	attributes = "\\[" + whitespace + "*(" + characterEncoding + ")" + whitespace +
+	Attributi = "\\[" + whitespace + "*(" + characterEncoding + ")" + whitespace +
 		"*(?:([*^$|!~]?=)" + whitespace + "*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|(" + identifier + ")|)|)" + whitespace + "*\\]",
 
 	// Prefer arguments quoted,
@@ -1095,7 +1095,7 @@ var i,
 	//   then anything else
 	// These preferences are here to reduce the number of selectors
 	//   needing tokenize in the PSEUDO preFilter
-	pseudos = ":(" + characterEncoding + ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + attributes.replace( 3, 8 ) + ")*)|.*)\\)|)",
+	pseudos = ":(" + characterEncoding + ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + Attributi.replace( 3, 8 ) + ")*)|.*)\\)|)",
 
 	// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
 	rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
@@ -1113,7 +1113,7 @@ var i,
 		"ID": new RegExp( "^#(" + characterEncoding + ")" ),
 		"CLASS": new RegExp( "^\\.(" + characterEncoding + ")" ),
 		"TAG": new RegExp( "^(" + characterEncoding.replace( "w", "w*" ) + ")" ),
-		"ATTR": new RegExp( "^" + attributes ),
+		"ATTR": new RegExp( "^" + Attributi ),
 		"PSEUDO": new RegExp( "^" + pseudos ),
 		"CHILD": new RegExp( "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace +
 			"*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace +
@@ -1341,7 +1341,7 @@ function assert( fn ) {
 
 /**
  * Adds the same handler for all of the specified attrs
- * @param {String} attrs Pipe-separated list of attributes
+ * @param {String} attrs Pipe-separated list of Attributi
  * @param {Function} handler The method that will be applied
  */
 function addHandle( attrs, handler ) {
@@ -1471,12 +1471,12 @@ setDocument = Sizzle.setDocument = function( node ) {
 		});
 	}
 
-	/* Attributes
+	/* Attributi
 	---------------------------------------------------------------------- */
 
 	// Support: IE<8
-	// Verify that getAttribute really returns attributes and not properties (excepting IE8 booleans)
-	support.attributes = assert(function( div ) {
+	// Verify that getAttribute really returns Attributi and not properties (excepting IE8 booleans)
+	support.Attributi = assert(function( div ) {
 		div.className = "i";
 		return !div.getAttribute("className");
 	});
@@ -1601,7 +1601,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			div.innerHTML = "<select><option selected=''></option></select>";
 
 			// Support: IE8
-			// Boolean attributes and "value" are not treated correctly
+			// Boolean Attributi and "value" are not treated correctly
 			if ( !div.querySelectorAll("[selected]").length ) {
 				rbuggyQSA.push( "\\[" + whitespace + "*(?:value|" + booleans + ")" );
 			}
@@ -1838,7 +1838,7 @@ Sizzle.attr = function( elem, name ) {
 			undefined;
 
 	return val === undefined ?
-		support.attributes || !documentIsHTML ?
+		support.Attributi || !documentIsHTML ?
 			elem.getAttribute( name ) :
 			(val = elem.getAttributeNode(name)) && val.specified ?
 				val.value :
@@ -2941,7 +2941,7 @@ if ( !assert(function( div ) {
 
 // Support: IE<9
 // Use defaultValue in place of getAttribute("value")
-if ( !support.attributes || !assert(function( div ) {
+if ( !support.Attributi || !assert(function( div ) {
 	div.innerHTML = "<input/>";
 	div.firstChild.setAttribute( "value", "" );
 	return div.firstChild.getAttribute( "value" ) === "";
@@ -3449,7 +3449,7 @@ jQuery.support = (function( support ) {
 	for ( i in { submit: true, change: true, focusin: true }) {
 		div.setAttribute( eventName = "on" + i, "t" );
 
-		support[ i + "Bubbles" ] = eventName in window || div.attributes[ eventName ].expando === false;
+		support[ i + "Bubbles" ] = eventName in window || div.Attributi[ eventName ].expando === false;
 	}
 
 	div.style.backgroundClip = "content-box";
@@ -3808,7 +3808,7 @@ jQuery.fn.extend({
 				data = jQuery.data( elem );
 
 				if ( elem.nodeType === 1 && !jQuery._data( elem, "parsedAttrs" ) ) {
-					attrs = elem.attributes;
+					attrs = elem.Attributi;
 					for ( ; i < attrs.length; i++ ) {
 						name = attrs[i].name;
 
@@ -4350,17 +4350,17 @@ jQuery.extend({
 		var hooks, ret,
 			nType = elem.nodeType;
 
-		// don't get/set attributes on text, comment and attribute nodes
+		// don't get/set Attributi on text, comment and attribute nodes
 		if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {
 			return;
 		}
 
-		// Fallback to prop when attributes are not supported
+		// Fallback to prop when Attributi are not supported
 		if ( typeof elem.getAttribute === core_strundefined ) {
 			return jQuery.prop( elem, name, value );
 		}
 
-		// All attributes are lowercase
+		// All Attributi are lowercase
 		// Grab necessary hook if one is defined
 		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
 			name = name.toLowerCase();
@@ -4387,7 +4387,7 @@ jQuery.extend({
 		} else {
 			ret = jQuery.find.attr( elem, name );
 
-			// Non-existent attributes return null, we normalize to undefined
+			// Non-existent Attributi return null, we normalize to undefined
 			return ret == null ?
 				undefined :
 				ret;
@@ -4403,7 +4403,7 @@ jQuery.extend({
 			while ( (name = attrNames[i++]) ) {
 				propName = jQuery.propFix[ name ] || name;
 
-				// Boolean attributes get special treatment (#10870)
+				// Boolean Attributi get special treatment (#10870)
 				if ( jQuery.expr.match.bool.test( name ) ) {
 					// Set corresponding property to false
 					if ( getSetInput && getSetAttribute || !ruseDefault.test( name ) ) {
@@ -4494,11 +4494,11 @@ jQuery.extend({
 	}
 });
 
-// Hooks for boolean attributes
+// Hooks for boolean Attributi
 boolHook = {
 	set: function( elem, value, name ) {
 		if ( value === false ) {
-			// Remove boolean attributes when set to false
+			// Remove boolean Attributi when set to false
 			jQuery.removeAttr( elem, name );
 		} else if ( getSetInput && getSetAttribute || !ruseDefault.test( name ) ) {
 			// IE<8 needs the *property* name
@@ -4553,7 +4553,7 @@ if ( !getSetInput || !getSetAttribute ) {
 	};
 }
 
-// IE6/7 do not support getting/setting some attributes with get/setAttribute
+// IE6/7 do not support getting/setting some Attributi with get/setAttribute
 if ( !getSetAttribute ) {
 
 	// Use this for any attribute in IE6/7
@@ -4577,7 +4577,7 @@ if ( !getSetAttribute ) {
 		}
 	};
 	jQuery.expr.attrHandle.id = jQuery.expr.attrHandle.name = jQuery.expr.attrHandle.coords =
-		// Some attributes are constructed with empty-string values when not defined
+		// Some Attributi are constructed with empty-string values when not defined
 		function( elem, name, isXML ) {
 			var ret;
 			return isXML ?
@@ -4619,7 +4619,7 @@ if ( !getSetAttribute ) {
 }
 
 
-// Some attributes require a special call on IE
+// Some Attributi require a special call on IE
 // http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
 if ( !jQuery.support.hrefNormalized ) {
 	// href/src property should get the full normalized URL (#10299/#12915)
@@ -7145,7 +7145,7 @@ if ( window.getComputedStyle ) {
 
 		// If we're not dealing with a regular pixel number
 		// but a number that has a weird ending, we need to convert it to pixels
-		// but not position css attributes, as those are proportional to the parent element instead
+		// but not position css Attributi, as those are proportional to the parent element instead
 		// and we can't measure the parent instead because it might trigger a "stacking dolls" problem
 		if ( rnumnonpx.test( ret ) && !rposition.test( name ) ) {
 
@@ -9098,7 +9098,7 @@ function defaultPrefilter( elem, props, opts ) {
 	// height/width overflow pass
 	if ( elem.nodeType === 1 && ( "height" in props || "width" in props ) ) {
 		// Make sure that nothing sneaks out
-		// Record all 3 overflow attributes because IE does not
+		// Record all 3 overflow Attributi because IE does not
 		// change the overflow attribute when overflowX and
 		// overflowY are set to the same value
 		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];

@@ -48,6 +48,12 @@ namespace ClassiDiBusiness.DAL {
         
         private global::System.Data.DataRelation relationFK_LavorazioniPratiche_TipoLavorazioni;
         
+        private global::System.Data.DataRelation relationFK_AttributiLavorazioni_CategorieAttributi;
+        
+        private global::System.Data.DataRelation relationFK_EsclusioniCategorie_CategorieAttributi;
+        
+        private global::System.Data.DataRelation relationFK_EsclusioniCategorie_CategorieAttributi1;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -353,6 +359,9 @@ namespace ClassiDiBusiness.DAL {
             this.relationFK_EsclusioniAttributi_AttributiLavorazioni1 = this.Relations["FK_EsclusioniAttributi_AttributiLavorazioni1"];
             this.relationFK_LavorazioneAttributi_LavorazioniPratiche = this.Relations["FK_LavorazioneAttributi_LavorazioniPratiche"];
             this.relationFK_LavorazioniPratiche_TipoLavorazioni = this.Relations["FK_LavorazioniPratiche_TipoLavorazioni"];
+            this.relationFK_AttributiLavorazioni_CategorieAttributi = this.Relations["FK_AttributiLavorazioni_CategorieAttributi"];
+            this.relationFK_EsclusioniCategorie_CategorieAttributi = this.Relations["FK_EsclusioniCategorie_CategorieAttributi"];
+            this.relationFK_EsclusioniCategorie_CategorieAttributi1 = this.Relations["FK_EsclusioniCategorie_CategorieAttributi1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -397,6 +406,18 @@ namespace ClassiDiBusiness.DAL {
                         this.tableTipoLavorazioni.idTipoLavorazioneColumn}, new global::System.Data.DataColumn[] {
                         this.tableLavorazioniPratiche.TipoLavorazioneColumn}, false);
             this.Relations.Add(this.relationFK_LavorazioniPratiche_TipoLavorazioni);
+            this.relationFK_AttributiLavorazioni_CategorieAttributi = new global::System.Data.DataRelation("FK_AttributiLavorazioni_CategorieAttributi", new global::System.Data.DataColumn[] {
+                        this.tableCategorieAttributi.idCategoriaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableAttributi.CategoriaColumn}, false);
+            this.Relations.Add(this.relationFK_AttributiLavorazioni_CategorieAttributi);
+            this.relationFK_EsclusioniCategorie_CategorieAttributi = new global::System.Data.DataRelation("FK_EsclusioniCategorie_CategorieAttributi", new global::System.Data.DataColumn[] {
+                        this.tableCategorieAttributi.idCategoriaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEsclusioniCategorie.CategoriaColumn}, false);
+            this.Relations.Add(this.relationFK_EsclusioniCategorie_CategorieAttributi);
+            this.relationFK_EsclusioniCategorie_CategorieAttributi1 = new global::System.Data.DataRelation("FK_EsclusioniCategorie_CategorieAttributi1", new global::System.Data.DataColumn[] {
+                        this.tableCategorieAttributi.idCategoriaColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEsclusioniCategorie.CategoriaEsclusaColumn}, false);
+            this.Relations.Add(this.relationFK_EsclusioniCategorie_CategorieAttributi1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1532,14 +1553,17 @@ namespace ClassiDiBusiness.DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AttributiRow AddAttributiRow(int idAttributo, int Categoria, string Descrizione, bool HasValue, string DescrizioneValore) {
+            public AttributiRow AddAttributiRow(int idAttributo, CategorieAttributiRow parentCategorieAttributiRowByFK_AttributiLavorazioni_CategorieAttributi, string Descrizione, bool HasValue, string DescrizioneValore) {
                 AttributiRow rowAttributiRow = ((AttributiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         idAttributo,
-                        Categoria,
+                        null,
                         Descrizione,
                         HasValue,
                         DescrizioneValore};
+                if ((parentCategorieAttributiRowByFK_AttributiLavorazioni_CategorieAttributi != null)) {
+                    columnValuesArray[1] = parentCategorieAttributiRowByFK_AttributiLavorazioni_CategorieAttributi[0];
+                }
                 rowAttributiRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAttributiRow);
                 return rowAttributiRow;
@@ -2100,12 +2124,18 @@ namespace ClassiDiBusiness.DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EsclusioniCategorieRow AddEsclusioniCategorieRow(int Categoria, int CategoriaEsclusa, int TipoLavorazione) {
+            public EsclusioniCategorieRow AddEsclusioniCategorieRow(CategorieAttributiRow parentCategorieAttributiRowByFK_EsclusioniCategorie_CategorieAttributi, CategorieAttributiRow parentCategorieAttributiRowByFK_EsclusioniCategorie_CategorieAttributi1, int TipoLavorazione) {
                 EsclusioniCategorieRow rowEsclusioniCategorieRow = ((EsclusioniCategorieRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Categoria,
-                        CategoriaEsclusa,
+                        null,
+                        null,
                         TipoLavorazione};
+                if ((parentCategorieAttributiRowByFK_EsclusioniCategorie_CategorieAttributi != null)) {
+                    columnValuesArray[0] = parentCategorieAttributiRowByFK_EsclusioniCategorie_CategorieAttributi[0];
+                }
+                if ((parentCategorieAttributiRowByFK_EsclusioniCategorie_CategorieAttributi1 != null)) {
+                    columnValuesArray[1] = parentCategorieAttributiRowByFK_EsclusioniCategorie_CategorieAttributi1[0];
+                }
                 rowEsclusioniCategorieRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEsclusioniCategorieRow);
                 return rowEsclusioniCategorieRow;
@@ -2870,6 +2900,39 @@ namespace ClassiDiBusiness.DAL {
             public void SetDescrizioneInternaNull() {
                 this[this.tableCategorieAttributi.DescrizioneInternaColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public AttributiRow[] GetAttributiRows() {
+                if ((this.Table.ChildRelations["FK_AttributiLavorazioni_CategorieAttributi"] == null)) {
+                    return new AttributiRow[0];
+                }
+                else {
+                    return ((AttributiRow[])(base.GetChildRows(this.Table.ChildRelations["FK_AttributiLavorazioni_CategorieAttributi"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EsclusioniCategorieRow[] GetEsclusioniCategorieRowsByFK_EsclusioniCategorie_CategorieAttributi() {
+                if ((this.Table.ChildRelations["FK_EsclusioniCategorie_CategorieAttributi"] == null)) {
+                    return new EsclusioniCategorieRow[0];
+                }
+                else {
+                    return ((EsclusioniCategorieRow[])(base.GetChildRows(this.Table.ChildRelations["FK_EsclusioniCategorie_CategorieAttributi"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EsclusioniCategorieRow[] GetEsclusioniCategorieRowsByFK_EsclusioniCategorie_CategorieAttributi1() {
+                if ((this.Table.ChildRelations["FK_EsclusioniCategorie_CategorieAttributi1"] == null)) {
+                    return new EsclusioniCategorieRow[0];
+                }
+                else {
+                    return ((EsclusioniCategorieRow[])(base.GetChildRows(this.Table.ChildRelations["FK_EsclusioniCategorie_CategorieAttributi1"])));
+                }
+            }
         }
         
         /// <summary>
@@ -2943,6 +3006,17 @@ namespace ClassiDiBusiness.DAL {
                 }
                 set {
                     this[this.tableAttributi.DescrizioneValoreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CategorieAttributiRow CategorieAttributiRow {
+                get {
+                    return ((CategorieAttributiRow)(this.GetParentRow(this.Table.ParentRelations["FK_AttributiLavorazioni_CategorieAttributi"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_AttributiLavorazioni_CategorieAttributi"]);
                 }
             }
             
@@ -3095,6 +3169,28 @@ namespace ClassiDiBusiness.DAL {
                 }
                 set {
                     this[this.tableEsclusioniCategorie.TipoLavorazioneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CategorieAttributiRow CategorieAttributiRowByFK_EsclusioniCategorie_CategorieAttributi {
+                get {
+                    return ((CategorieAttributiRow)(this.GetParentRow(this.Table.ParentRelations["FK_EsclusioniCategorie_CategorieAttributi"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_EsclusioniCategorie_CategorieAttributi"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CategorieAttributiRow CategorieAttributiRowByFK_EsclusioniCategorie_CategorieAttributi1 {
+                get {
+                    return ((CategorieAttributiRow)(this.GetParentRow(this.Table.ParentRelations["FK_EsclusioniCategorie_CategorieAttributi1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_EsclusioniCategorie_CategorieAttributi1"]);
                 }
             }
         }
