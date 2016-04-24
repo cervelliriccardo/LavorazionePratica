@@ -9078,7 +9078,7 @@ $.extend(Datepicker.prototype, {
 	 *
 	 * @param  format string - the expected format of the date
 	 * @param  value string - the date in the above format
-	 * @param  settings Object - Attributi include:
+	 * @param  settings Object - attributes include:
 	 *					shortYearCutoff  number - the cutoff year for determining the century (optional)
 	 *					dayNamesShort	string[7] - abbreviated names of the days from Sunday (optional)
 	 *					dayNames		string[7] - names of the days from Sunday (optional)
@@ -9288,7 +9288,7 @@ $.extend(Datepicker.prototype, {
 	 *
 	 * @param  format string - the desired format of the date
 	 * @param  date Date - the date value to format
-	 * @param  settings Object - Attributi include:
+	 * @param  settings Object - attributes include:
 	 *					dayNamesShort	string[7] - abbreviated names of the days from Sunday (optional)
 	 *					dayNames		string[7] - names of the days from Sunday (optional)
 	 *					monthNamesShort string[12] - abbreviated names of the months (optional)
@@ -13831,7 +13831,7 @@ var tooltip = $.widget( "ui.tooltip", {
 			that.close( event, true );
 		});
 
-		// remove title Attributi to prevent native tooltips
+		// remove title attributes to prevent native tooltips
 		this.element.find( this.options.items ).addBack().each(function() {
 			var element = $( this );
 			if ( element.is( "[title]" ) ) {
@@ -13843,7 +13843,7 @@ var tooltip = $.widget( "ui.tooltip", {
 	},
 
 	_enable: function() {
-		// restore title Attributi
+		// restore title attributes
 		this.element.find( this.options.items ).addBack().each(function() {
 			var element = $( this );
 			if ( element.data( "ui-tooltip-title" ) ) {
@@ -13949,7 +13949,7 @@ var tooltip = $.widget( "ui.tooltip", {
 		// (we don't want to cause an element to start matching [title])
 		//
 		// We use removeAttr only for key events, to allow IE to export the correct
-		// accessible Attributi. For mouse events, set to empty string to avoid
+		// accessible attributes. For mouse events, set to empty string to avoid
 		// native tooltip showing up (happens only when removing inside mouseover).
 		if ( target.is( "[title]" ) ) {
 			if ( event && event.type === "mouseover" ) {

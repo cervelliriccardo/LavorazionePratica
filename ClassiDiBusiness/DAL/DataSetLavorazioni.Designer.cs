@@ -1296,7 +1296,6 @@ namespace ClassiDiBusiness.DAL {
                                 this.columnidCategoria}, true));
                 this.columnidCategoria.AllowDBNull = false;
                 this.columnidCategoria.Unique = true;
-                this.columnDescrizione.AllowDBNull = false;
                 this.columnDescrizione.MaxLength = 25;
                 this.columnDescrizioneInterna.MaxLength = 50;
                 this.columnOrdine.AllowDBNull = false;
@@ -2854,7 +2853,12 @@ namespace ClassiDiBusiness.DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Descrizione {
                 get {
-                    return ((string)(this[this.tableCategorieAttributi.DescrizioneColumn]));
+                    try {
+                        return ((string)(this[this.tableCategorieAttributi.DescrizioneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Descrizione\' in table \'CategorieAttributi\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCategorieAttributi.DescrizioneColumn] = value;
@@ -2887,6 +2891,18 @@ namespace ClassiDiBusiness.DAL {
                 set {
                     this[this.tableCategorieAttributi.OrdineColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescrizioneNull() {
+                return this.IsNull(this.tableCategorieAttributi.DescrizioneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescrizioneNull() {
+                this[this.tableCategorieAttributi.DescrizioneColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
